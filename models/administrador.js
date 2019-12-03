@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    senha: DataTypes.STRING,
+    senha: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     numero: DataTypes.STRING,
     complemento: DataTypes.STRING,
     cidade: DataTypes.STRING,
@@ -16,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     estado: DataTypes.STRING,
     data_vinculo: DataTypes.DATE,
   }, {
-    timestamps: false
+    timestamps: false,
+    tableName: 'administradores'
   });
   Administrador.associate = function(models) {
     // associations can be defined here

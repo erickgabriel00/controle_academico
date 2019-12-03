@@ -4,7 +4,12 @@ var model = require('../models/index');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  model.Aluno.findAll({})
+  model.Aluno.findAll({
+      include: [{
+          model: model.Turma,
+          as: 'turma'
+      }]
+  })
       .then(alunos => res.json({
           error: false,
           data: alunos
@@ -29,8 +34,8 @@ router.post('/', function (req, res, next) {
     rua,
     cep,
     estado,
-    id_turma: id_turma, 
-    nome
+    nome,
+    id_turma 
   } = req.body;
   model.Aluno.create({
     matricula: matricula,
@@ -42,13 +47,18 @@ router.post('/', function (req, res, next) {
     rua: rua,
     cep: cep,
     estado: estado,
-    id_turma: id_turma,
-    nome: nome
+    nome: nome,
+    id_turma: id_turma
+      },{
+          include: [{
+              model: model.Turma,
+              as: 'turma'
+          }]
       })
       .then(aluno => res.status(201).json({
           error: false,
           data: aluno,
-          message: 'New Aluno has been created.'
+          message: 'Novo Aluno foi criado.'
       }))
       .catch(error => res.json({
           error: true,
@@ -72,8 +82,8 @@ router.put('/:matricula', function (req, res, next) {
     rua: rua,
     cep: cep,
     estado: estado, 
-    id_turma: id_turma, 
-    nome: nome
+    nome: nome,
+    id_turma: id_turma 
       }, {
           where: {
               matricula: aluno_matricula
@@ -81,7 +91,7 @@ router.put('/:matricula', function (req, res, next) {
       })
       .then(aluno => res.status(201).json({
           error: false,
-          message: 'aluno has been updated.'
+          message: 'Aluno foi atualizado.'
       }))
       .catch(error => res.json({
           error: true,
@@ -98,7 +108,7 @@ router.delete('/:matricula', function (req, res, next) {
       }})
       .then(status => res.status(201).json({
           error: false,
-          message: 'aluno has been delete.'
+          message: 'Aluno foi deletado.'
       }))
       .catch(error => res.json({
           error: true,

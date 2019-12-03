@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var model = require('../models/index');
 
-/* GET users listing. */
+/* GET professores listing. */
 router.get('/', function (req, res, next) {
   model.Professor.findAll({})
       .then(professores => res.json({
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-/* POST users */
+/* POST professores */
 router.post('/', function (req, res, next) {
   const {
     matricula,
@@ -46,7 +46,7 @@ router.post('/', function (req, res, next) {
       .then(professor => res.status(201).json({
           error: false,
           data: professor,
-          message: 'New professor has been created.'
+          message: 'novo professor foi criado.'
       }))
       .catch(error => res.json({
           error: true,
@@ -56,9 +56,9 @@ router.post('/', function (req, res, next) {
 });
 
 
-/* update user */
+/* update professores */
 router.put('/:matricula', function (req, res, next) {
-  const professor_matricula = req.params.professor;
+  const professor_matricula = req.params.matricula;
   const { matricula, senha, titulacao, complemento, cidade, bairro, rua, cep, estado, data_vinculo} = req.body;
   model.Professor.update({
     matricula: matricula,
@@ -73,7 +73,7 @@ router.put('/:matricula', function (req, res, next) {
     data_vinculo: data_vinculo,
       }, {
           where: {
-            professor: professor_matricula
+            matricula: professor_matricula
           }
       })
       .then(professor => res.status(201).json({
@@ -89,13 +89,13 @@ router.put('/:matricula', function (req, res, next) {
 
 /* Delete user. */
 router.delete('/:matricula', function (req, res, next) {
-      const professor_matricula = req.params.professor;
+      const professor_matricula = req.params.matricula;
       model.Professor.destroy({ where: {
-        professor: professor_matricula
+        matricula: professor_matricula
       }})
       .then(status => res.status(201).json({
           error: false,
-          message: 'professor has been delete.'
+          message: 'professor foi deletado.'
       }))
       .catch(error => res.json({
           error: true,

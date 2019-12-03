@@ -8,7 +8,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       senha: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       numero: {
         type: Sequelize.STRING

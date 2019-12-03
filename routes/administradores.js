@@ -46,7 +46,7 @@ router.post('/', function (req, res, next) {
       .then(administrador => res.status(201).json({
           error: false,
           data: administrador,
-          message: 'New administrador has been created.'
+          message: 'novo administrador foi criado.'
       }))
       .catch(error => res.json({
           error: true,
@@ -78,7 +78,7 @@ router.put('/:matricula', function (req, res, next) {
       })
       .then(administrador => res.status(201).json({
           error: false,
-          message: 'admin has been updated.'
+          message: 'admin foi atualizado.'
       }))
       .catch(error => res.json({
           error: true,
@@ -95,7 +95,7 @@ router.delete('/:matricula', function (req, res, next) {
       }})
       .then(status => res.status(201).json({
           error: false,
-          message: 'admin has been delete.'
+          message: 'admin foi deletado.'
       }))
       .catch(error => res.json({
           error: true,

@@ -8,7 +8,10 @@ var indexRouter = require('./routes/index');
 var alunosRouter = require('./routes/alunos');
 var administradoresRouter = require('./routes/administradores');
 var professoresRouter = require('./routes/professores');
-// var todo = require('./routes/todo');
+var notasRouter = require('./routes/notas');
+var turmasRouter = require('./routes/turmas');
+var cursosRouter = require('./routes/cursos');
+var disciplinasRouter = require('./routes/disciplinas');
 
 var app = express();
 
@@ -26,7 +29,10 @@ app.use('/', indexRouter);
 app.use('/alunos', alunosRouter);
 app.use('/administradores', administradoresRouter);
 app.use('/professores', professoresRouter);
-// app.use('/todo', todo);
+app.use('/notas', notasRouter);
+app.use('/turmas', turmasRouter);
+app.use('/cursos', cursosRouter);
+app.use('/disciplinas', disciplinasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

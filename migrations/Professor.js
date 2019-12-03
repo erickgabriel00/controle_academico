@@ -8,6 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       senha: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       titulacao: {
@@ -32,6 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       data_vinculo: {
+        allowNull: false,
         type: Sequelize.DATE
       },
     });
